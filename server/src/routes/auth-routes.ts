@@ -12,6 +12,7 @@ export const login = async (req: Request, res: Response) => {
   //Substract user and password from request body
 
   const {username , password } = req.body;
+  console.log('🔐 Login attempt:', { username });
 
   try {
     // Search user by username
@@ -19,13 +20,19 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ where: {username}});
 
     if (!user) {
+            // 🆕 DEBUG: No user found
+            console.log('❌ User not found');
       return res.status (400).json({message: 'Invalid username or password'});
     }
+    // 🆕 DEBUG: User was found
+    console.log('✅ User found:', user.username);
 
     // Passwords comparison with bcrypt
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch) {
+            // 🆕 DEBUG: Password didn't match
+            console.log('❌ Password mismatch');
       return res.status(400).json({message: 'Invalid username or password'})
     }
   
@@ -35,10 +42,14 @@ export const login = async (req: Request, res: Response) => {
     expiresIn: '1h', // you can adjust time
   });
 
+   // 🆕 DEBUG: Token generated
+   console.log('🎫 Token generated');
+
   //Send token
   return res.json({ token});
 } catch (error) {
-  console.error(error);
+  // 🆕 DEBUG: Catch any server error
+  console.error('🚨 Server error during login:', error);
   return res.status(500).json({ message: 'Server error'});
 
 }
