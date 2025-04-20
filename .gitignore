@@ -1,0 +1,47 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+
+# Builds
+dist/
+build/
+.vite/
+
+# Vite
+*.local
+
+# Typescript
+*.tsbuildinfo
+
+# Runtime
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# IDEs & system files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+
+# Output from testing tools
+coverage/
+
+# Mac system files
+._*
+
+# Optional: Insomnia or temp debug files
+*.http
+*.rest
+*.json
+ 
