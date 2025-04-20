@@ -16,6 +16,12 @@ app.use(express.static('../client/dist'));
 app.use(express.json());
 app.use(routes);
 
+//Redirect unknown routes
+// This should go *after* all other routes
+app.get('*', (req, res) => {
+  res.sendFile('index.html', { root: '../client/dist' });
+});
+
 sequelize.sync({force: forceDatabaseRefresh}).then(() => {
   app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
