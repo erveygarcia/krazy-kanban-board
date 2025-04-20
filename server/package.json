@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/server.js",
-  "scripts": {
-    "build": "cd ../client && npm install && npm run build && cd ../server && tsc",
-    "start": "npm run build && node dist/server.js",
-    "dev": "npx nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "npx ts-node src/seeds/index.ts"
-  },
+"scripts": {
+  "build": "cd ../client && npm ci && npm run build && cd ../server && tsc",
+  "start": "node dist/server.js",
+  "dev": "npx nodemon",
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "seed": "npx ts-node src/seeds/index.ts"
+},
+
   "nodemonConfig": {
     "watch": ["src"],
     "ext": "ts,json,js",
