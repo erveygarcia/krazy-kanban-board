@@ -1,32 +1,56 @@
-# Node
+# ============================================
+# 🟡 Node modules & dependencies
+# ============================================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Logs
+# ============================================
+# 🔧 Logs
+# ============================================
 logs/
 *.log
 
-# Builds
+# ============================================
+# 🚧 Build output
+# ============================================
 dist/
 build/
 .vite/
+.client-output/
+.server-output/
 
-# Vite
+# ============================================
+# ⚙️ Vite / local configs
+# ============================================
 *.local
 
-# Typescript
+# ============================================
+# ⚡ TypeScript cache
+# ============================================
 *.tsbuildinfo
 
-# Runtime
+# ============================================
+# 🔐 Environment variables
+# ============================================
 .env
 .env.local
 .env.development
 .env.test
 .env.production
 
-# IDEs & system files
+# ============================================
+# 🧪 Debug / HTTP tools (más específico)
+# ============================================
+*.http
+*.rest
+Insomnia_*.json
+*.insomnia.json
+
+# ============================================
+# 💻 IDEs / System files
+# ============================================
 .DS_Store
 .vscode/
 .idea/
@@ -34,14 +58,7 @@ build/
 *.swo
 Thumbs.db
 
-# Output from testing tools
+# ============================================
+# 🧪 Test coverage
+# ============================================
 coverage/
-
-# Mac system files
-._*
-
-# Optional: Insomnia or temp debug files
-*.http
-*.rest
-*.json
- 

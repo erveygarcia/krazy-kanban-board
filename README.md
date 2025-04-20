@@ -97,6 +97,12 @@ The app is fully deployable using [Render](https://render.com) for both client a
 
 ---
 
+## Repository
+
+[Click here to view the GitHub repository](https://github.com/erveygarcia/krazy-kanban-board.git)
+
+---
+
 ## ✍️ Author
 
 Developed by **Ervey Garcia** as part of a Full-Stack Web Development Bootcamp challenge.
