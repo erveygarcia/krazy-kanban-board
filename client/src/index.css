@@ -1,203 +1,213 @@
-/* Reset básico */
+/* Reset y base general */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-/* Tipografía y fondo general */
-body {
+  box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e6f0ff;
-  color: #0a1f44;
+}
+
+body {
+  background-color: #e6f0fa;
+  color: #0a2342;
   min-height: 100vh;
-}
-
-/* Login Notice */
-.login-notice {
-  text-align: center;
-  padding: 3rem 1rem;
-}
-
-.login-notice h1 {
-  font-size: 2rem;
-  color: #003366;
 }
 
 /* Login Page */
 .login-container {
-  max-width: 400px;
-  margin: 5rem auto;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #d0e6ff, #a3c9f9);
+  padding: 1rem;
 }
 
-.login-container h2 {
-  margin-bottom: 1.5rem;
-  color: #003366;
-  text-align: center;
+.login-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #0a2342;
 }
 
-.login-container input {
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  padding: 0.75rem;
   width: 100%;
-  padding: 0.8rem;
+  max-width: 320px;
   margin: 0.5rem 0;
-  border: 1px solid #aaccee;
-  border-radius: 4px;
+  border-radius: 10px;
+  border: 1px solid #7da4d4;
 }
 
 .login-container button {
-  width: 100%;
-  padding: 0.8rem;
-  margin-top: 1rem;
-  background-color: #0055cc;
+  background-color: #2b72d6;
   color: white;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
+  font-weight: bold;
   cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .login-container button:hover {
-  background-color: #003399;
-}
-
-/* Botón de nuevo ticket */
-#create-ticket-link {
-  background-color: #007bff;
-  color: white;
-  padding: 0.7rem 1.5rem;
-  margin: 1rem;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-#create-ticket-link:hover {
-  background-color: #0056b3;
+  background-color: #1955a6;
 }
 
 /* Board Layout */
 .board {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#title-bar {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0a2342;
+}
+
+#logout-btn {
+  padding: 0.5rem 1rem;
+  background-color: #f05945;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#logout-btn:hover {
+  background-color: #b9382e;
+}
+
+#title-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#create-ticket-link {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .board-display {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
 }
 
-/* Swimlane = columna de estado */
 .swimlane {
-  flex: 1 1 300px;
-  background-color: #f0f7ff;
-  border: 1px solid #cce0ff;
-  border-radius: 8px;
+  background-color: #ddeaf8;
   padding: 1rem;
+  border-radius: 15px;
   min-height: 300px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.swimlane h3 {
+.swimlane h2 {
   text-align: center;
-  margin-bottom: 1rem;
-  color: #003366;
-}
-
-/* Tarjeta / ticket individual */
-.ticket {
-  background-color: white;
-  border: 1px solid #d6e4f5;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 6px;
-  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.ticket h4 {
-  color: #004080;
+  font-size: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
-.ticket p {
-  font-size: 0.9rem;
-  color: #333;
+.ticket {
+  background-color: #ffffff;
+  border-left: 5px solid #2b72d6;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
 }
 
-/* Botón de borrar */
-.ticket button {
+.ticket:hover {
+  transform: scale(1.02);
+}
+
+.ticket-buttons {
+  display: flex;
+  justify-content: space-between;
   margin-top: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background-color: #ff4d4d;
-  color: white;
+}
+
+.ticket-buttons button {
+  background-color: transparent;
   border: none;
-  border-radius: 4px;
+  color: #2b72d6;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.ticket button:hover {
-  background-color: #cc0000;
+.ticket-buttons button:hover {
+  text-decoration: underline;
 }
 
-/* Error Page */
-.error-page {
-  text-align: center;
-  padding: 2rem;
-  color: #cc0000;
-}
-
-/* Create/Edit Ticket Form */
-.ticket-form {
-  max-width: 600px;
+/* Create / Edit Ticket */
+.ticket-form-container {
+  max-width: 500px;
   margin: 2rem auto;
-  background-color: #ffffff;
+  background-color: #e0ecf9;
   padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ticket-form-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  color: #0a2342;
+}
+
+.ticket-form-container input,
+.ticket-form-container textarea,
+.ticket-form-container select {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
   border-radius: 10px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #a3c9f9;
+  background-color: #f5faff;
 }
 
-.ticket-form label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #003366;
-  font-weight: bold;
-}
-
-.ticket-form input,
-.ticket-form textarea,
-.ticket-form select {
+.ticket-form-container button {
   width: 100%;
   padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #aaccee;
-  border-radius: 5px;
-}
-
-.ticket-form button {
-  background-color: #007bff;
+  background-color: #2b72d6;
   color: white;
-  padding: 0.7rem 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.ticket-form button:hover {
-  background-color: #0056b3;
+.ticket-form-container button:hover {
+  background-color: #1955a6;
 }
 
-/* Media Queries */
+/* Responsivo */
 @media (max-width: 768px) {
   .board-display {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-  .ticket-form {
+  #title-bar-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ticket-form-container {
     margin: 1rem;
-    padding: 1.5rem;
   }
 }
