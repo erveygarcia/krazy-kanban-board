@@ -28,6 +28,7 @@ const Login = () => {
       const res = await login(formData);
       if (res.token) {
         localStorage.setItem('token', res.token);
+        console.log("✅ Token saved:", res.token);
         navigate('/');
       } else {
         setError('Invalid username or password');
