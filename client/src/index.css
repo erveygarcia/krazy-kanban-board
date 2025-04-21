@@ -199,3 +199,79 @@ nav button:hover {
     align-items: center;
   }
 }
+
+.kanban-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #444;
+  flex-wrap: wrap;
+}
+
+.kanban-title {
+  flex: 1 1 100%;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.kanban-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex: 1 1 100%;
+  margin-bottom: 1rem;
+}
+
+.new-ticket-btn,
+.logout-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.new-ticket-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.new-ticket-btn:hover {
+  background-color: #2980b9;
+}
+
+.logout-btn {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: #444;
+}
+
+/* Responsive tweak */
+@media (min-width: 600px) {
+  .kanban-header {
+    flex-wrap: nowrap;
+  }
+
+  .kanban-title {
+    flex: 1;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .kanban-actions {
+    flex: none;
+    justify-content: flex-end;
+    margin-bottom: 0;
+  }
+}
