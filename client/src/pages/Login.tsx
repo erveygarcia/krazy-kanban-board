@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/authAPI';
-import '../index.css';
+import { login } from '../api/authAPI'; // asegúrate que esta función esté bien implementada
+import '../index.css'; // o tu archivo global de estilos
 
 const Login = () => {
   const [formData, setFormData] = useState<{ username: string; password: string }>({
@@ -51,7 +51,7 @@ const Login = () => {
           value={formData.username}
           onChange={handleChange}
           required
-          autoComplete="username" {/* ✅ Nuevo */}
+          autoComplete="username" // ✅ NUEVO: mejora UX del navegador
         />
 
         <label htmlFor="password">Password</label>
@@ -62,7 +62,7 @@ const Login = () => {
           value={formData.password}
           onChange={handleChange}
           required
-          autoComplete="current-password" {/* ✅ Nuevo */}
+          autoComplete="current-password" // ✅ NUEVO: evita warnings de navegador
         />
 
         {error && <p className="error">{error}</p>}

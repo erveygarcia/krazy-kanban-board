@@ -1,6 +1,6 @@
 import { UserLogin } from "../interfaces/UserLogin";
 
-const login = async (userInfo: UserLogin) => {
+const login = async (userInfo: UserLogin): Promise<{ token: string }> => {
   // TODO: make a POST request to the login route
 
   // 🔹 NUEVO: Guardamos la URL base en una constante para mayor claridad y reutilización
@@ -21,11 +21,9 @@ const login = async (userInfo: UserLogin) => {
     throw new Error(errorData.message || 'Login failed');
   }
 
-  // Sending back received token
-  const data = await response.json();
-
-  // ✅ NUEVO: en lugar de retornar sólo el token, lo devolvemos como objeto con clave `token`
-  return { token: data.token };
+  // 🔹 NUEVO: Regresamos el token como objeto, para que el frontend lo use como res.token
+  const token = await response.json();
+  return { token };
 };
 
 export { login };
