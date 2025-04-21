@@ -23,7 +23,9 @@ const login = async (userInfo: UserLogin) => {
 
   // Sending back received token
   const data = await response.json();
-  return data.token;
+
+  // ✅ NUEVO: en lugar de retornar sólo el token, lo devolvemos como objeto con clave `token`
+  return { token: data.token };
 };
 
 export { login };
