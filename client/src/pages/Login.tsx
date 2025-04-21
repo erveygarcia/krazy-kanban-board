@@ -51,6 +51,7 @@ const Login = () => {
           value={formData.username}
           onChange={handleChange}
           required
+          autoComplete="username" // 🔹 NUEVO
         />
 
         <label htmlFor="password">Password</label>
@@ -61,6 +62,7 @@ const Login = () => {
           value={formData.password}
           onChange={handleChange}
           required
+          autoComplete="current-password" // 🔹 NUEVO
         />
 
         {error && <p className="error">{error}</p>}
