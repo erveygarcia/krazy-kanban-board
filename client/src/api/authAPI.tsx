@@ -1,12 +1,12 @@
+// authAPI.ts
 import { UserLogin } from "../interfaces/UserLogin";
 
-const login = async (userInfo: UserLogin): Promise<{ token: string }> => {
-  // TODO: make a POST request to the login route
-
-  // 🔹 NUEVO: Guardamos la URL base en una constante para mayor claridad y reutilización
+// TODO: make a POST request to the login route
+const login = async (userInfo: UserLogin) => {
+  // 🔹 NUEVO: Constante con la URL base del backend
   const API = import.meta.env.VITE_API_BASE_URL;
 
-  // Make POST request to backend
+  // 🔹 POST al backend
   const response = await fetch(`${API}/auth/login`, {
     method: 'POST',
     headers: {
@@ -15,15 +15,15 @@ const login = async (userInfo: UserLogin): Promise<{ token: string }> => {
     body: JSON.stringify(userInfo),
   });
 
-  // Handling incorrect answer
+  // 🔹 Si hay error, lanzamos mensaje
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || 'Login failed');
   }
 
-  // 🔹 NUEVO: Regresamos el token como objeto, para que el frontend lo use como res.token
-  const token = await response.json();
-  return { token };
+  // ✅ NUEVO: Regresamos un objeto con `token`
+  const data = await response.json();
+  return { token: data.token };
 };
 
 export { login };
