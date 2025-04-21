@@ -1,60 +1,65 @@
-import { useState, FormEvent, ChangeEvent } from "react";
-
-import Auth from '../utils/auth';
-import { login } from "../api/authAPI";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../api/authAPI';
+import { UserLogin } from '../interfaces/UserLogin';
+import auth from '../utils/auth';
 
 const Login = () => {
-  console.log("Login component mounted");
-  
-  const [loginData, setLoginData] = useState({
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState<UserLogin>({
     username: '',
     password: ''
   });
+  const [error, setError] = useState('');
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setLoginData({
-      ...loginData,
-      [name]: value
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('login from submitted');
-    
     try {
-      const token = await login(loginData);
-      Auth.login(token);
-    } catch (err) {
-      console.error('Failed to login', err);
-      alert('Login failed. Please check your credentials');
+      const token = await login(formData);
+      auth.login(token);
+      navigate('/');
+    } catch (err: any) {
+      setError(err.message);
     }
   };
 
   return (
-    <div className='container'>
-      <form className='form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
-        <label >Username</label>
-        <input 
-          type='text'
-          name='username'
-          value={loginData.username || ''}
+    <div className="login-page">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h1>Welcome back</h1>
+        <p className="subtitle">Please login to your account</p>
+
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          value={formData.username}
           onChange={handleChange}
+          required
         />
-      <label>Password</label>
-        <input 
-          type='password'
-          name='password'
-          value={loginData.password || ''}
+
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          value={formData.password}
           onChange={handleChange}
+          required
         />
-        <button type='submit'>Submit Form</button>
+
+        {error && <p className="error">{error}</p>}
+
+        <button type="submit">Login</button>
       </form>
     </div>
-    
-  )
+  );
 };
 
 export default Login;
