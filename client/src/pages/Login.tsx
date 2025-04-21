@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const res = await login(formData);
       if (res.token) {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('id_token', res.token);
         console.log("✅ Token saved:", res.token);
         navigate('/');
       } else {
