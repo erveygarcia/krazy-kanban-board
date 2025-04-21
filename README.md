@@ -93,7 +93,7 @@ The main board contains three swimlanes. Each lane holds tickets by status. User
 
 ## 🌐 Deployment
 
-The app is fully deployable using [Render](https://render.com) for both client and server.
+The app is fully deployable using [Render](https://krazy-kanban-board-hd9s.onrender.com/login) for both client and server.
 
 ---
 
