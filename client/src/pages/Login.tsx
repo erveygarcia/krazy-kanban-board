@@ -1,30 +1,39 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/authAPI';
-import { UserLogin } from '../interfaces/UserLogin';
-import auth from '../utils/auth';
+import { login } from '../api/authAPI'; // asegúrate que esta función esté bien implementada
+import '../index.css'; // o tu archivo global de estilos
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState<UserLogin>({
+  const [formData, setFormData] = useState<{ username: string; password: string }>({
     username: '',
     password: ''
   });
+
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
     try {
-      const token = await login(formData);
-      auth.login(token);
-      navigate('/');
-    } catch (err: any) {
-      setError(err.message);
+      const res = await login(formData);
+      if (res.token) {
+        localStorage.setItem('token', res.token);
+        navigate('/');
+      } else {
+        setError('Invalid username or password');
+      }
+    } catch (err) {
+      setError('Login failed');
     }
   };
 
@@ -32,7 +41,7 @@ const Login = () => {
     <div className="login-page">
       <form className="login-form" onSubmit={handleSubmit}>
         <h1>Welcome back</h1>
-        <p className="subtitle">Please login to your account</p>
+        <p className="subtext">Please enter your details</p>
 
         <label htmlFor="username">Username</label>
         <input
