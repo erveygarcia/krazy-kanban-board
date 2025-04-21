@@ -1,4 +1,4 @@
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTicket } from '../api/ticketAPI';
@@ -10,10 +10,10 @@ const CreateTicket = () => {
         description: '',
         status: 'Todo',
         assignedUserId: 1,
-        assignedUser: null
+        assignedUser: null,
     });
-    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
+    const navigate = useNavigate();
     const getAllUsers = async () => {
         try {
             const data = await retrieveUsers();
@@ -28,26 +28,21 @@ const CreateTicket = () => {
     }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (newTicket) {
-            const data = await createTicket(newTicket);
-            console.log(data);
+        try {
+            await createTicket(newTicket);
             navigate('/');
         }
+        catch (err) {
+            console.error('Failed to create ticket', err);
+        }
     };
-    const handleTextAreaChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewTicket((prev) => (prev ? { ...prev, [name]: value } : undefined));
+        setNewTicket(prev => ({
+            ...prev,
+            [name]: name === 'assignedUserId' ? parseInt(value) : value,
+        }));
     };
-    const handleTextChange = (e) => {
-        const { name, value } = e.target;
-        setNewTicket((prev) => (prev ? { ...prev, [name]: value } : undefined));
-    };
-    const handleUserChange = (e) => {
-        const { name, value } = e.target;
-        setNewTicket((prev) => (prev ? { ...prev, [name]: value } : undefined));
-    };
-    return (_jsx(_Fragment, { children: _jsx("div", { className: 'container', children: _jsxs("form", { className: 'form', onSubmit: handleSubmit, children: [_jsx("h1", { children: "Create Ticket" }), _jsx("label", { htmlFor: 'tName', children: "Ticket Name" }), _jsx("textarea", { id: 'tName', name: 'name', value: newTicket?.name || '', onChange: handleTextAreaChange }), _jsx("label", { htmlFor: 'tStatus', children: "Ticket Status" }), _jsxs("select", { name: 'status', id: 'tStatus', value: newTicket?.status || '', onChange: handleTextChange, children: [_jsx("option", { value: 'Todo', children: "Todo" }), _jsx("option", { value: 'In Progress', children: "In Progress" }), _jsx("option", { value: 'Done', children: "Done" })] }), _jsx("label", { htmlFor: 'tDescription', children: "Ticket Description" }), _jsx("textarea", { id: 'tDescription', name: 'description', value: newTicket?.description || '', onChange: handleTextAreaChange }), _jsx("label", { htmlFor: 'tUserId', children: "User's ID" }), _jsx("select", { name: 'assignedUserId', value: newTicket?.assignedUserId || '', onChange: handleUserChange, children: users ? users.map((user) => {
-                            return (_jsx("option", { value: String(user.id), children: user.username }, user.id));
-                        }) : (_jsx("textarea", { id: 'tUserId', name: 'assignedUserId', value: newTicket?.assignedUserId || 0, onChange: handleTextAreaChange })) }), _jsx("button", { type: 'submit', onSubmit: handleSubmit, children: "Submit Form" })] }) }) }));
+    return (_jsx("div", { className: "form-container", children: _jsxs("form", { className: "form-card", onSubmit: handleSubmit, children: [_jsx("h1", { children: "Create Ticket" }), _jsx("label", { htmlFor: "tName", children: "Ticket Name" }), _jsx("input", { id: "tName", name: "name", type: "text", value: newTicket.name || '', onChange: handleChange, required: true }), _jsx("label", { htmlFor: "tStatus", children: "Ticket Status" }), _jsxs("select", { id: "tStatus", name: "status", value: newTicket.status || '', onChange: handleChange, children: [_jsx("option", { value: "Todo", children: "Todo" }), _jsx("option", { value: "In Progress", children: "In Progress" }), _jsx("option", { value: "Done", children: "Done" })] }), _jsx("label", { htmlFor: "tDescription", children: "Ticket Description" }), _jsx("textarea", { id: "tDescription", name: "description", rows: 4, value: newTicket.description || '', onChange: handleChange }), _jsx("label", { htmlFor: "tUserId", children: "Assign to User" }), _jsx("select", { name: "assignedUserId", id: "tUserId", value: newTicket.assignedUserId || 0, onChange: handleChange, children: users.map(user => (_jsx("option", { value: user.id || 0, children: user.username }, user.id))) }), _jsx("button", { type: "submit", children: "Submit Ticket" })] }) }));
 };
 export default CreateTicket;

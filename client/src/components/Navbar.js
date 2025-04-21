@@ -13,6 +13,6 @@ const Navbar = () => {
         setIsLoggedin(false); //Updating view
         navigate('/login'); // Redirects to login
     };
-    return (_jsxs("div", { className: 'nav', children: [_jsx("div", { className: 'nav-title', children: _jsx(Link, { to: '/', children: "Krazy Kanban Board" }) }), _jsx("ul", { children: !isloggedIn ? (_jsx("li", { className: 'nav-item', children: _jsx(Link, { to: '/login', children: _jsx("button", { type: 'button', children: "Login" }) }) })) : (_jsx("li", { className: 'nav-item', children: _jsx("button", { type: 'button', onClick: handleLogout, children: "Logout" }) })) })] }));
+    return (_jsxs("div", { className: 'nav', children: [_jsx("div", { className: 'nav-title' }), _jsx("ul", { children: !isloggedIn ? (_jsx("li", { className: 'nav-item', children: _jsx(Link, { to: '/login', children: _jsx("button", { type: 'button', children: "Login" }) }) })) : (_jsx("li", { className: 'nav-item', children: _jsx("button", { type: 'button', onClick: handleLogout, children: "Logout" }) })) })] }));
 };
 export default Navbar;

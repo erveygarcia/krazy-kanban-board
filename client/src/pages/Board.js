@@ -65,11 +65,9 @@ const Board = () => {
     if (error) {
         return _jsx(ErrorPage, {});
     }
-    return (_jsx(_Fragment, { children: !loginCheck ? (_jsx("div", { className: 'login-notice', children: _jsx("h1", { children: "Login to create & view tickets" }) })) : (
-        // DragDropContext enveloped
-        _jsx(DragDropContext, { onDragEnd: handleDragEnd, children: _jsxs("div", { className: 'board', children: [_jsx("button", { type: 'button', id: 'create-ticket-link', children: _jsx(Link, { to: '/create', children: "New Ticket" }) }), _jsx("div", { className: 'board-display', children: boardStates.map((status) => {
+    return (_jsx(_Fragment, { children: !loginCheck ? (_jsx("div", { className: 'login-notice', children: _jsx("h1", { children: "Login to create & view tickets" }) })) : (_jsxs(_Fragment, { children: [_jsxs("div", { className: "kanban-header", children: [_jsx("h1", { className: "kanban-title", children: "Krazy Kanban Board" }), _jsxs("div", { className: "kanban-actions", children: [_jsx(Link, { to: "/create", className: "new-ticket-btn", children: "New Ticket" }), _jsx("button", { className: "logout-btn", onClick: () => auth.logout(), children: "Logout" })] })] }), _jsx(DragDropContext, { onDragEnd: handleDragEnd, children: _jsx("div", { className: 'board-display', children: boardStates.map((status) => {
                             const filteredTickets = tickets.filter(ticket => ticket.status === status);
                             return (_jsx(Swimlane, { title: status, tickets: filteredTickets, deleteTicket: deleteIndvTicket }, status));
-                        }) })] }) })) }));
+                        }) }) })] })) }));
 };
 export default Board;

@@ -1,8 +1,8 @@
+// TODO: make a POST request to the login route
 const login = async (userInfo) => {
-    // TODO: make a POST request to the login route
-    // 🔹 NUEVO: Guardamos la URL base en una constante para mayor claridad y reutilización
+    // 🔹 NUEVO: Constante con la URL base del backend
     const API = import.meta.env.VITE_API_BASE_URL;
-    // Make POST request to backend
+    // 🔹 POST al backend
     const response = await fetch(`${API}/auth/login`, {
         method: 'POST',
         headers: {
@@ -10,13 +10,13 @@ const login = async (userInfo) => {
         },
         body: JSON.stringify(userInfo),
     });
-    // Handling incorrect answer
+    // 🔹 Si hay error, lanzamos mensaje
     if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || 'Login failed');
     }
-    // Sending back received token
+    // ✅ NUEVO: Regresamos un objeto con `token`
     const data = await response.json();
-    return data.token;
+    return { token: data.token };
 };
 export { login };

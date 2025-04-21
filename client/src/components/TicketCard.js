@@ -13,6 +13,6 @@ const TicketCard = ({ ticket, deleteTicket }) => {
             }
         }
     };
-    return (_jsxs("div", { className: 'ticket-card', children: [_jsx("h3", { children: ticket.name }), _jsx("p", { children: ticket.description }), _jsx("p", { children: ticket.assignedUser?.username }), _jsx(Link, { to: '/edit', state: { id: ticket.id }, type: 'button', className: 'editBtn', children: "Edit" }), _jsx("button", { type: 'button', value: String(ticket.id), onClick: handleDelete, className: 'deleteBtn', children: "Delete" })] }));
+    return (_jsxs("div", { className: 'ticket', children: [" ", _jsx("h3", { children: ticket.name }), _jsx("p", { children: ticket.description }), _jsx("p", { children: ticket.assignedUser?.username }), _jsx(Link, { to: '/edit', state: { id: ticket.id }, type: 'button', className: 'editBtn', children: "Edit" }), _jsx("button", { type: 'button', value: String(ticket.id), onClick: handleDelete, className: 'deleteBtn', children: "Delete" })] }));
 };
 export default TicketCard;
